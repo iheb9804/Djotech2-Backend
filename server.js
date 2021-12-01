@@ -10,4 +10,4 @@ const passport = require('passport');
 app.use('/',(req,res)=>{
   res.json({message:"Test successful"});
 })
-app.listen(3000);
+app.listen(8080);
