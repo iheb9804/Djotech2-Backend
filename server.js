@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 require('dotenv/config');
 
 var corsOptions = {
-    origin: 'http://localhost:4200',
+    origin: process.env.DOMAIN || 'http://localhost:4200',
     optionsSuccessStatus: 200 
 }
 
