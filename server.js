@@ -60,7 +60,9 @@ const colorsRoute= require('./routes/colors');
 const providersRoute= require('./routes/providers');
 const usersRoute= require('./routes/users');
 
-
+app.use('/',(req,res)=>{
+  res.json({message:"Test successful"});
+})
 
 app.use('/products',productsRoute)
 app.use('/colors',colorsRoute)
