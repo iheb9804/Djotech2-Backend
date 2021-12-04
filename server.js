@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 require('dotenv/config');
 
 var corsOptions = {
-    origin: 'https://djotech.herokuapp.com',
+    origin: 'http://localhost:4200',
     optionsSuccessStatus: 200 
 }
 

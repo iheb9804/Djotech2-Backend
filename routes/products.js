@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
             price:req.body.price,
             sellingPrice:req.body.sellingPrice,
             quantity:req.body.quantity,
-            category:req.body.category.name,
+            category:req.body.category,
             description:req.body.description,
             image:req.body.image
         }

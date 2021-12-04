@@ -25,10 +25,11 @@ router.post('/', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
+    console.log(req.body)
     Category.findById(req.body._id).then(category=>{
 
         category.name=req.body.name || category.name;
-        category.brand=req.body.brands || category.brands;
+        category.brands=req.body.brands || category.brands;
 
         category.save().then(data=>{
             res.json(data);
