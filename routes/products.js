@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     const product = new Product(
         {
-            name: req.body.name,
+            name: req.body.name ? req.body.name : "",
             brand: req.body.brand,
             color: req.body.color,
             provider: req.body.provider,
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
             sellingPrice: req.body.sellingPrice,
             quantity: req.body.quantity,
             category: req.body.category,
-            description: req.body.description,
+            description: req.body.description ? req.body.description : "",
             image: req.body.image
         }
     )
@@ -52,7 +52,7 @@ router.post('/', async (req, res) => {
 
 router.put('/', async (req, res) => {
     Product.findById(req.body._id).then(product => {
-        console.log(product);
+
         product.name = req.body.name || product.name;
         product.brand = req.body.brand || product.brand;
         product.color = req.body.color || product.color;

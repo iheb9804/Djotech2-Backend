@@ -89,7 +89,7 @@ router.post('/authenticate', (req, res, next) => {
                 })
                 //********************************************************
             } else {
-                return res.json({ success: false, msg: 'Mot de passe incorrect !' });
+                return res.json({ success: false, error: 'Mot de passe incorrect !' });
             }
         })
     })

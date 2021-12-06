@@ -11,13 +11,15 @@ require('dotenv/config');
 
 
 
-// **************************************** CORS ***************************************************************
+// **************************************** CORS ****************************************
 var allowedDomains = ['https://djotech.herokuapp.com', 'http://localhost:4200'];
 
-/*var corsOptions = {
+/*
+var corsOptions = {
   origin: 'https://djotech.herokuapp.com',
   optionsSuccessStatus: 200
-}*/
+}
+*/
 
 // CROSS ORIGIN RESOURCE SHARING
 app.use(cors({
