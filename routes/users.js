@@ -67,7 +67,7 @@ router.post('/authenticate', (req, res, next) => {
 
     User.findOne({ login: login }, (err, user) => {
         if (!user) {
-            return res.json({ success: false, message: "User not found" });
+            return res.json({ success: false, error: "Utilisateur non trouvé" });
 
         }
         console.log(JSON.stringify(req.body) + " / " + user.password);
@@ -89,7 +89,7 @@ router.post('/authenticate', (req, res, next) => {
                 })
                 //********************************************************
             } else {
-                return res.json({ success: false, msg: 'mot de passe!' });
+                return res.json({ success: false, msg: 'Mot de passe incorrect !' });
             }
         })
     })
