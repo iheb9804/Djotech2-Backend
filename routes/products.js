@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
             state: req.body.state,
             price: req.body.price,
             sellingPrice: req.body.sellingPrice,
-            quantity: req.body.quantity,
+            quantity: req.body.quantity ? req.body.quantity : 0,
             category: req.body.category,
             description: req.body.description ? req.body.description : "",
             image: req.body.image
@@ -77,7 +77,6 @@ router.put('/', async (req, res) => {
 });
 
 router.post('/sellProduct', (req, res) => {
-    console.log(req.body)
     Product.findById(req.body._id).then(product => {
         product.quantity -= req.body.quantity;
         const stat = new Stat({
