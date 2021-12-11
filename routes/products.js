@@ -15,6 +15,15 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/dashboard', async (req, res) => {
+    try {
+        const products = await Product.find();
+        res.json(products);
+    } catch (err) {
+        res.json({ message: err });
+    }
+});
+
 router.post('/', async (req, res) => {
     const product = new Product(
         {

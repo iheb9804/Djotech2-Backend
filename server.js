@@ -80,6 +80,7 @@ const colorsRoute = require('./routes/colors');
 const providersRoute = require('./routes/providers');
 const usersRoute = require('./routes/users');
 const statsRoute = require('./routes/stats');
+const borrowersRoute = require('./routes/borrowers');
 
 
 
@@ -89,6 +90,7 @@ app.use('/categories', categoriesRoute)
 app.use('/providers', providersRoute)
 app.use('/users', usersRoute)
 app.use('/stats', statsRoute)
+app.use('/loans', borrowersRoute)
 
 mongoose.connect(process.env.DB_CONNECTION,
   { useNewUrlParser: true, useUnifiedTopology: true },
@@ -97,7 +99,9 @@ mongoose.connect(process.env.DB_CONNECTION,
   });
 
 require('./config/passport')(passport);
+
 app.use('/', (req, res) => {
   res.json({ message: "Test successful" });
 })
+
 app.listen(port);
