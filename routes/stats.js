@@ -52,8 +52,8 @@ router.put('/sellProduct', async (req, res) => {
 router.get('/stockInTrade', (req, res) => {
     Product.find().then(products => {
         let total = 0;
-        products.forEach(product => (product.quantity != null && product.price != null) ? total += product.quantity * product.price : 0);
-        console.log(total)
+        products.forEach(product => {
+            return (product.quantity != null && product.price != null) ? total += product.quantity * product.price : 0});
         res.json({ success: true, total });
     }).catch(error => {
         res.json({ success: false, error });
@@ -97,6 +97,16 @@ router.get('/phonesValue', (req, res) => {
     Product.find().then(products => {
         let total = 0;
         products.forEach(product => (product.sellingPrice != null && product.category != null) ? (product.category == "617b1efedf2a89293933c589" ? total += product.sellingPrice : 0) : 0);
+        res.json({ success: true, total });
+    }).catch(error => {
+        res.json({ success: false, error });
+    })
+});
+
+router.get('/phonesTradeValue', (req, res) => {
+    Product.find().then(products => {
+        let total = 0;
+        products.forEach(product => (product.price != null && product.category != null) ? (product.category == "617b1efedf2a89293933c589" ? total += product.price : 0) : 0);
         res.json({ success: true, total });
     }).catch(error => {
         res.json({ success: false, error });
