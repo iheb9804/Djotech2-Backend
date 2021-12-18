@@ -6,9 +6,6 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     try {
         const products = await Product.find();
-        for (let product of products){
-            product.price=null;
-        }
         res.json(products);
     } catch (err) {
         res.json({ message: err });
@@ -142,7 +139,6 @@ router.delete('/:id', (req, res) => {
 
 router.get('/:id', async (req, res) => {
     Product.findById(req.params.id).then(product => {
-        product.price=null;
         res.json(product)
     }).catch(err => res.json(err));
 });
