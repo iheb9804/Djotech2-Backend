@@ -96,7 +96,7 @@ router.get('/debts', (req, res) => {
 router.get('/phonesValue', (req, res) => {
     Product.find().then(products => {
         let total = 0;
-        products.forEach(product => (product.sellingPrice != null && product.category != null) ? (product.category == "617b1efedf2a89293933c589" ? total += product.sellingPrice : 0) : 0);
+        products.forEach(product => (product.sellingPrice != null && product.category != null) ? (product.category == "617b1efedf2a89293933c589" ? total += product.sellingPrice * product.quantity : 0) : 0);
         res.json({ success: true, total });
     }).catch(error => {
         res.json({ success: false, error });
