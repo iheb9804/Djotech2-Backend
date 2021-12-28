@@ -81,6 +81,7 @@ const providersRoute = require('./routes/providers');
 const usersRoute = require('./routes/users');
 const statsRoute = require('./routes/stats');
 const borrowersRoute = require('./routes/borrowers');
+const spendingsRoute = require('./routes/spendings');
 
 
 
@@ -91,6 +92,7 @@ app.use('/providers', providersRoute)
 app.use('/users', usersRoute)
 app.use('/stats', statsRoute)
 app.use('/loans', borrowersRoute)
+app.use('/spendings', spendingsRoute)
 
 mongoose.connect(process.env.DB_CONNECTION,
   { useNewUrlParser: true, useUnifiedTopology: true },
