@@ -33,14 +33,13 @@ router.post('/', async (req, res) => {
     }).catch(err=>res.json(err))
 });
 
-router.put('/', async (req, res) => {
+router.put('/', (req, res) => {
     Borrower.findById(req.body.id).then(borrower=>{
         borrower.name=req.body.name || borrower.name;
         borrower.phone=req.body.phone || borrower.phone;
-        borrower.date=req.body.date || borrower.date;
+        borrower.date=( req.body.date && req.body.date!="NaN-NaN-NaN" ) ? req.body.date : borrower.date;
         borrower.comment=req.body.comment || borrower.comment;
-        borrower.credit=req.body.credit || borrower.credit;
-
+        borrower.credit=req.body.credit;
         borrower.save().then(data=>{
             res.json(data);
         }).catch(err=>res.json(err));

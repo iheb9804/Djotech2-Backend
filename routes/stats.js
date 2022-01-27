@@ -53,7 +53,8 @@ router.get('/stockInTrade', (req, res) => {
     Product.find().then(products => {
         let total = 0;
         products.forEach(product => {
-            return (product.quantity != null && product.price != null) ? total += product.quantity * product.price : 0});
+            return (product.quantity != null && product.price != null) ? total += product.quantity * product.price : 0
+        });
         res.json({ success: true, total });
     }).catch(error => {
         res.json({ success: false, error });
@@ -115,7 +116,7 @@ router.get('/phonesTradeValue', (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     Stat.findByIdAndRemove(req.params.id).then(data => {
-        res.json(data)
+        res.json(data);
     }).catch(err => res.json(err));
 });
 
