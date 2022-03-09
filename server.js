@@ -12,7 +12,7 @@ require('dotenv/config');
 
 
 // **************************************** CORS ****************************************
-var allowedDomains = ['https://djotech.herokuapp.com', 'http://localhost:4200'];
+var allowedDomains = ['https://djotech.herokuapp.com', 'http://localhost:4200','https://inventorymanagement-frontend.herokuapp.com'];
 
 /*
 var corsOptions = {
