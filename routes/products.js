@@ -67,13 +67,12 @@ router.put('/', async (req, res) => {
         product.color = req.body.color || product.color;
         product.provider = req.body.provider || product.provider;
         product.state = req.body.state || product.state;
-        product.price = req.body.price || product.price;
-        product.sellingPrice = req.body.sellingPrice || product.sellingPrice;
-        product.quantity = req.body.quantity || product.quantity;
+        product.price = (req.body.price != null) && (req.body.price != undefined) ? req.body.price : product.price;
+        product.sellingPrice = (req.body.sellingPrice != null) && (req.body.sellingPrice != undefined) ? req.body.sellingPrice : product.sellingPrice;
+        product.quantity = (req.body.quantity != null) && (req.body.quantity != undefined) ? req.body.quantity : product.quantity;
         product.category = req.body.category || product.category;
         product.description = req.body.description || product.description;
         product.image = req.body.image || product.image;
-
         product.save().then(data => {
 
             res.json(data);
