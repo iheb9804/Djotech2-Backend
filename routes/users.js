@@ -38,6 +38,8 @@ router.post('/register', (req, res) => {
     })
 })
 
+
+
 router.post('/verifieremail', (req, res) => {
     User.findOne({ email: req.body.email }).then(data => {
         if (data != null) {
@@ -76,7 +78,7 @@ router.post('/authenticate', (req, res, next) => {
         User.comparePassword(password, user.password, (err, isMatch) => {
             if (err) res.json(err);
             if (isMatch) {
-                user.password=undefined;
+                user.password = undefined;
                 const token = jwt.sign(user.toJSON(), process.env.SECRET, {
                     expiresIn: 7200 // 2h
                 });
@@ -97,6 +99,70 @@ router.post('/authenticate', (req, res, next) => {
 
 
 });
+
+router.post('/savePassword', (req, res) => {
+    let reqBody = req.body;
+    bcrypt.genSalt(10, (err, salt) => {
+        if (err) res.json(err);
+        bcrypt.hash(reqBody.password, salt, (err, hash) => {
+            if (err) res.json(err);
+            reqBody.password = hash;
+
+            User.findOne({ login: reqBody.login }, (err, user) => {
+                if (!user) {
+                    return res.json({ success: false, error: "Utilisateur non trouvé" });
+                }
+                user.screenPassword=reqBody.password;
+                user.save().then(data=>{
+                    return res.json({ success: true, error: "Mot de passe enregistré" });
+                })
+            })
+        })
+    })
+
+
+})
+
+router.post('/checkPassword', (req, res, next) => {
+    const login = req.body.login;
+    const password = req.body.password;
+    User.findOne({ login: login }, (err, user) => {
+        if (!user) {
+            return res.json({ success: false, error: "Utilisateur non trouvé" });
+        }
+        User.comparePassword(password, user.screenPassword, (err, isMatch) => {
+            if (err) res.json(err);
+            console.log(isMatch)
+
+            if (isMatch) {
+                // **************************************** LOCAL STORAGE **********************************
+                res.json({
+                    success: true,
+                    message:"Mot de passe correct"
+                })
+                //********************************************************
+            } else {
+                return res.json({ success: false, error: 'Mot de passe incorrect !' });
+            }
+        })
+    })
+});
+
+router.post('/checkPasswordAvailability', (req, res, next) => {
+    const login = req.body.login;
+
+    User.findOne({ login: login }, (err, user) => {
+        if (!user) {
+            return res.json({ success: false, error: "Utilisateur non trouvé" });
+        }
+        if (user.screenPassword=="" || user.screenPassword==null || user.screenPassword==undefined){
+            return res.json({ success: false, error: "Pas de mot de passe ajouté" });
+        }else{
+            return res.json({ success: true, error: "Mot de passe est disponible" });
+        }
+    })
+});
+
 router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     res.json({ user: req.user })
 });

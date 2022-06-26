@@ -28,6 +28,10 @@ const UserSchema = mongoose.Schema({
     },
     role:{
         type:String
+    },
+    screenPassword:{
+        type:String,
+        default:""
     }
 }); 
 
