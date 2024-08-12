@@ -46,7 +46,7 @@ require('dotenv/config');
 
 
 // **************************************** CORS ****************************************
-var allowedDomains = ['https://djotech.herokuapp.com', 'http://localhost:4200','https://djotech.onrender.com','https://djotech2-frontend.onrender.com','https://djotech2.onrender.com'];
+var allowedDomains = ['https://djotech.herokuapp.com', 'http://localhost:4200','https://djotech.onrender.com','https://djotech2-frontend.onrender.com','https://djotech2.onrender.com','https://djotech2-frontend-bjr3.onrender.com'];
 
 /*
 var corsOptions = {
