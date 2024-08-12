@@ -97,7 +97,7 @@ router.get('/debts', (req, res) => {
 router.get('/phonesValue', (req, res) => {
     Product.find().then(products => {
         let total = 0;
-        products.forEach(product => (product.sellingPrice != null && product.category != null) ? (product.category == "66b90f6795feacc33260bee1" ? total += product.sellingPrice * product.quantity : 0) : 0);
+        products.forEach(product => (product.sellingPrice != null && product.category != null) ? (product.category == "66b5eb99e806fb161d7e8405" ? total += product.sellingPrice * product.quantity : 0) : 0);
         res.json({ success: true, total });
     }).catch(error => {
         res.json({ success: false, error });
@@ -107,7 +107,7 @@ router.get('/phonesValue', (req, res) => {
 router.get('/phonesTradeValue', (req, res) => {
     Product.find().then(products => {
         let total = 0;
-        products.forEach(product => (product.price != null && product.category != null) ? (product.category == "66b90f6795feacc33260bee1" ? total += product.price * product.quantity : 0) : 0);
+        products.forEach(product => (product.price != null && product.category != null) ? (product.category == "66b5eb99e806fb161d7e8405" ? total += product.price * product.quantity : 0) : 0);
         res.json({ success: true, total });
     }).catch(error => {
         res.json({ success: false, error });
